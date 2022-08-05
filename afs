@@ -1,1 +1,11 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Spectralism/AutoDungeon/main/Afs"))()
+local Players = game:GetService("Players")
+local client = Players.LocalPlayer
+local managePet = game:GetService("ReplicatedStorage").Remote.ManagePet
+
+for i,v in next, client.PlayerGui.MainGui.Pets.Main.Scroll:GetChildren() do
+    if v.Name == "PetBox" then
+        game:GetService("ReplicatedStorage").Remote.ManagePet:FireServer(v.UID.Value, "Lock", false)
+        
+managePet:FireServer(v.UID.Value, "Sell")
+    end    
+end
